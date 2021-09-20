@@ -6,7 +6,7 @@
 #    By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 14:58:03 by ocmarout          #+#    #+#              #
-#    Updated: 2021/09/04 19:53:54 by ocmarout         ###   ########.fr        #
+#    Updated: 2021/09/20 21:14:09 by ocmarout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ OBJS_DIR	=	./.objs/
 CC			=	clang
 MKDIR		=	mkdir -p
 
-CFLAGS		=	-Wall -Wextra ${INCLUDES}
+CFLAGS		=	-Wall -Wextra -Werror ${INCLUDES}
 
-INCLUDES	=	-I includes/ -I libft/includes/ -lmlx -framework OpenGL -framework AppKit
+INCLUDES	=	-I includes/ -I libft/includes/ -I mlx_linux/
 
 all:		norme ${NAME}
 
@@ -31,7 +31,8 @@ bonus:		all
 
 ${NAME}:	$(addprefix ${OBJS_DIR}, ${OBJS})
 		make -C libft/
-		$(CC) -o $@ $^ ${CFLAGS} -L./libft/ -lft
+		make -C mlx_linux/
+		$(CC) -o $@ $^ ${CFLAGS} -L./libft/ -lft -Lmlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 
 ${OBJS_DIR}:
 		${MKDIR} ${OBJS_DIR}
