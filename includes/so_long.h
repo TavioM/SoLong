@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/09/23 17:29:43 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/09/28 22:38:28 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include "libft.h"
 # include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}				t_mlx;
 
 typedef struct s_img
 {

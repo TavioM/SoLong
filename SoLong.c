@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/09/23 17:44:57 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/09/28 22:40:48 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,28 @@ int	draw_img(t_img *img, int width, int height)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*win;
+	t_mlx	mlx;
 	t_img	img;
 	int		x;
 	int		y;
 
-	x = 200;
-	y = 100;
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, x, y, "Test");
-	img.img = mlx_new_image(mlx, x, y);
+	x = 1600;
+	y = 800;
+	mlx.mlx = mlx_init();
+	if (!(mlx.mlx))
+		return (1);
+	mlx.win = mlx_new_window(mlx.mlx, x, y, "Test");
+	if (!(mlx.win))
+	{
+		free(mlx.mlx);
+		return (1);
+	}
+	img.img = mlx_new_image(mlx.mlx, x, y);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &(img.bpp),
 			&(img.len), &(img.endian));
 	draw_img(&img, x, y);
-	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
-	mlx_key_hook(win, &key_hook, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
+	mlx_key_hook(mlx.win, &key_hook, 0);
+	mlx_loop(mlx.mlx);
 	return (0);
 }
