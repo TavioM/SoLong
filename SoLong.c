@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/09/28 22:40:48 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:14:52 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@ int	key_hook(int keycode, int tmp)
 {
 	ft_printf("keycode = %d\n", keycode);
 	return (tmp);
+}
+
+int	handle_no_event(void *data)
+{
+	(void)data;
+	return (0);
+}
+
+int	handle_keypress(int keysym, t_mlx *mlx)
+{
+	if (keysym == XK_Escape)
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	printf("Keypress: %d\n", keysym);
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, void *data)
+{
+	(void)data;
+	printf("Keyrelease: %d\n", keysym);
+	return (0);
 }
 
 int	color(int alpha, int red, int green, int blue)
@@ -69,6 +90,9 @@ int	main(void)
 	img.img = mlx_new_image(mlx.mlx, x, y);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &(img.bpp),
 			&(img.len), &(img.endian));
+	mlx_loop_hook(mlx.mlx, &handle_no_event, &mlx);
+	mlx_hook(mlx.win, KeyPress, KeyPressMask, &handle_keypress, &mlx);
+	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
 	draw_img(&img, x, y);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
 	mlx_key_hook(mlx.win, &key_hook, 0);
