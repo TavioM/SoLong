@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/09/28 22:38:28 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:28:01 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define SO_LONG_H
 
 # include "libft.h"
+# include "GNL.h"
+# include "sys/types.h"
+# include "sys/stat.h"
+# include "fcntl.h"
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -32,5 +36,7 @@ typedef struct s_img
 	int				len;
 	int				endian;
 }				t_img;
+
+char	**parsing(char *filepath);
 
 #endif

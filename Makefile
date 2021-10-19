@@ -6,11 +6,12 @@
 #    By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 14:58:03 by ocmarout          #+#    #+#              #
-#    Updated: 2021/09/23 16:31:14 by ocmarout         ###   ########.fr        #
+#    Updated: 2021/10/19 15:25:37 by ocmarout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	SoLong.c
+SRCS		=	SoLong.c	\
+				parsing.c
 
 NAME		=	so_long
 
@@ -25,7 +26,7 @@ CFLAGS		=	-Wall -Wextra -Werror ${INCLUDES}
 
 INCLUDES	=	-I includes/ -I libft/includes/ -I mlx_linux/
 
-all:		norme ${NAME}
+all:		${NAME}
 
 bonus:		all
 
