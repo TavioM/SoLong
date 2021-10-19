@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/09/29 18:14:52 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:04:00 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,13 @@ int	draw_img(t_img *img, int width, int height)
 	return (0);
 }
 
+//void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
+
 int	main(void)
 {
 	t_mlx	mlx;
 	t_img	img;
+	t_img	brick;
 	int		x;
 	int		y;
 
@@ -95,6 +98,8 @@ int	main(void)
 	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
 	draw_img(&img, x, y);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
+	brick.img = mlx_xpm_file_to_image(mlx.mlx, "xpm/minecraft_brick.xpm", &x, &y);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 50, 50);
 	mlx_key_hook(mlx.win, &key_hook, 0);
 	mlx_loop(mlx.mlx);
 	return (0);
