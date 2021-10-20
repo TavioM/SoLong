@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/19 15:28:01 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:13:45 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_img
 	int				endian;
 }				t_img;
 
-char	**parsing(char *filepath);
+char	**map_parsing(char *filepath);
+int		check_map(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/19 15:30:42 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:35:32 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ int	main(int argc, char **argv)
 	}
 	x = 1600;
 	y = 800;
-	map = parsing(argv[1]);
+	map = map_parsing(argv[1]);
 	if (!map)
 		return (-1);
+	ft_printf("Got a map\n");
 	mlx.mlx = mlx_init();
 	if (!(mlx.mlx))
 		return (1);
@@ -109,6 +110,8 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
 	brick.img = mlx_xpm_file_to_image(mlx.mlx, "xpm/minecraft_brick.xpm", &x, &y);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 50, 50);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 66, 50);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 150, 150);
 	mlx_key_hook(mlx.win, &key_hook, 0);
 	mlx_loop(mlx.mlx);
 	return (0);

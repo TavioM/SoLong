@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:08:38 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/19 17:44:45 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:30:26 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,49 +24,94 @@ static int	check_filepath(char *filepath)
 		|| filepath[i - 2] != 'e' || filepath[i - 1] != 'r')
 	{
 		ft_printf("Error\nThis is not a \".ber\" extention\n");
-		return (0);
+		return (-1);
 	}
 	fd = open(filepath, O_RDONLY);
 	return (fd);
 }
 
-static void	add_line_to_map(char ***map, int size)
+void	print(char **map)
 {
-	int		i;
-	char	**tmp;
+	int	i;
 
-	tmp = malloc(sizeof(char *) * size);
-	if (!tmp)
-		return ()
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("line %d:%p, ", i, map[i]);
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
 }
 
-char	**parsing(char *filepath)
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}
+
+char	**add_line(char **map, char *new)
+{
+	int		i;
+	int		size;
+	char	**tmp;
+
+	if (!map)
+	{
+		tmp = malloc(sizeof(char *) * 2);
+		if (!tmp)
+			return (0);
+		tmp[0] = new;
+		tmp[1] = 0;
+		return (tmp);
+	}
+	i = -1;
+	size = 0;
+	while (map[size])
+		size++;
+	tmp = malloc(sizeof(char *) * (size + 2));
+	if (!tmp)
+	{
+		free_map(map);
+		return (0);
+	}
+	while (++i < size)
+		tmp[i] = map[i];
+	tmp[i++] = new;
+	tmp[i] = 0;
+	free(map);
+	return (tmp);
+}
+
+char	**map_parsing(char *filepath)
 {
 	int		i;
 	int		j;
 	int		fd;
+	char	*tmp;
 	char	**map;
 
+	i = 1;
+	map = 0;
 	fd = check_filepath(filepath);
 	if (fd == -1)
 		return (0);
-	map = malloc(sizeof(char *));
-	if (!map)
-	{
-		ft_printf("Error\nmalloc failed\n");
-		close(fd);
-		return (0);
-	}
-	i = 0;
-	j = get_next_line(fd, &(map[i++]));
+	j = get_next_line(fd, &tmp);
 	while (j == 1)
 	{
-		if (add_line_to_map(&map, i))
+		map = add_line(map, tmp);
+		if (!map)
 		{
-			ft_printf("Error\nFailed malloc\n")
 			return (0);
 		}
-		j = get_next_line(fd, &(map[i++]));
+		j = get_next_line(fd, &tmp);
 	}
-	return (0);
+	ft_printf("test the map\n");
+	if (check_map(map))
+		return (0);
+	print(map);
+	return (map);
 }
