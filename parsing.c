@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:08:38 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/20 19:30:26 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/21 19:25:36 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,6 @@ static int	check_filepath(char *filepath)
 	}
 	fd = open(filepath, O_RDONLY);
 	return (fd);
-}
-
-void	print(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		ft_printf("line %d:%p, ", i, map[i]);
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
 }
 
 char	**add_line(char **map, char *new)

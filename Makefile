@@ -6,13 +6,14 @@
 #    By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 14:58:03 by ocmarout          #+#    #+#              #
-#    Updated: 2021/10/20 17:11:15 by ocmarout         ###   ########.fr        #
+#    Updated: 2021/10/21 19:25:56 by ocmarout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	SoLong.c	\
 				parsing.c	\
-				check_map.c
+				check_map.c	\
+				utils.c
 
 NAME		=	so_long
 

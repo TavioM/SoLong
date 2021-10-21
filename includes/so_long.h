@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/20 17:13:45 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/21 19:29:46 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ typedef struct s_img
 
 char	**map_parsing(char *filepath);
 int		check_map(char **map);
+void	print(char **map);
+void	free_map(char **map);
+int		color(int alpha, int red, int green, int blue);
+void	set_window_size(char **map, int *x, int *y);
 
 #endif

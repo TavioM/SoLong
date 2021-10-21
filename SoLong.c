@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/20 16:35:32 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/21 19:24:53 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ int	handle_keyrelease(int keysym, void *data)
 	(void)data;
 	printf("Keyrelease: %d\n", keysym);
 	return (0);
-}
-
-int	color(int alpha, int red, int green, int blue)
-{
-	return (alpha << 24 | red << 16 | green << 8 | blue);
 }
 
 int	draw_img(t_img *img, int width, int height)
@@ -85,12 +80,10 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nExpected 2 arguments, got %d\n", argc);
 		return (1);
 	}
-	x = 1600;
-	y = 800;
 	map = map_parsing(argv[1]);
 	if (!map)
 		return (-1);
-	ft_printf("Got a map\n");
+	set_window_size(map, &x, &y);
 	mlx.mlx = mlx_init();
 	if (!(mlx.mlx))
 		return (1);
