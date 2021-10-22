@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:22:37 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/21 19:25:39 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:10:50 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	set_window_size(char **map, int *x, int *y)
 {
 	*x = ft_strlen(map[0]);
 	*y = 0;
-
 	while (map[*y])
 		(*y)++;
 	(*x) *= 16;
