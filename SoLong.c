@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/21 19:24:53 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:41:57 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,50 +18,40 @@ int	key_hook(int keycode, int tmp)
 	return (tmp);
 }
 
-int	handle_no_event(void *data)
+void	draw_map(t_img *img, t_img brick, char **map)
 {
-	(void)data;
-	return (0);
-}
-
-int	handle_keypress(int keysym, t_mlx *mlx)
-{
-	if (keysym == XK_Escape)
-		mlx_destroy_window(mlx->mlx, mlx->win);
-	printf("Keypress: %d\n", keysym);
-	return (0);
-}
-
-int	handle_keyrelease(int keysym, void *data)
-{
-	(void)data;
-	printf("Keyrelease: %d\n", keysym);
-	return (0);
-}
-
-int	draw_img(t_img *img, int width, int height)
-{
+	int	x;
+	int	y;
 	int	i;
 	int	j;
+	int	cursor;
 
-	i = 0;
-	while (i < height)
+	y = 0;
+	while (map[y])
 	{
-		j = 0;
-		while (j < width)
+		x = 0;
+		while (map[y][x])
 		{
-			if (j == width / 3)
-				(img->addr)[(i * width) + j] = color(0, 255, 0, 0);
-			else
-				(img->addr)[(i * width) + j]
-					= color(0, 255, 255, 0);
-			j++;
+			if (map[y][x] == '1')
+			{
+				cursor = (16 * ft_strlen(map[y]) * 16 * y) + (16 * x);
+				j = 0;
+				while (j < 16)
+				{
+					i = 0;
+					while (i < 16)
+					{
+						(img->addr)[cursor + i] = (brick.addr)[16 * j + i];
+						i++;
+					}
+					j++;
+					cursor += 16 * ft_strlen(map[y]);
+				}
+			}
+			x++;
 		}
-		i++;
+		y++;
 	}
-	ft_printf("bpp = %d, len = %d, endian %d\n",
-		img->bpp, img->len, img->endian);
-	return (0);
 }
 
 //void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
@@ -87,7 +77,7 @@ int	main(int argc, char **argv)
 	mlx.mlx = mlx_init();
 	if (!(mlx.mlx))
 		return (1);
-	mlx.win = mlx_new_window(mlx.mlx, x, y, "Test");
+	mlx.win = mlx_new_window(mlx.mlx, x, y, argv[1]);
 	if (!(mlx.win))
 	{
 		free(mlx.mlx);
@@ -96,15 +86,14 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(mlx.mlx, x, y);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.img, &(img.bpp),
 			&(img.len), &(img.endian));
+	brick.img = mlx_xpm_file_to_image(mlx.mlx, "xpm/minecraft_brick.xpm", &x, &y);
+	brick.addr = (unsigned int *)mlx_get_data_addr(brick.img, &(brick.bpp),
+			&(brick.len), &(brick.endian));
 	mlx_loop_hook(mlx.mlx, &handle_no_event, &mlx);
 	mlx_hook(mlx.win, KeyPress, KeyPressMask, &handle_keypress, &mlx);
 	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
-	draw_img(&img, x, y);
+	draw_map(&img, brick, map);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
-	brick.img = mlx_xpm_file_to_image(mlx.mlx, "xpm/minecraft_brick.xpm", &x, &y);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 50, 50);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 66, 50);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, brick.img, 150, 150);
 	mlx_key_hook(mlx.win, &key_hook, 0);
 	mlx_loop(mlx.mlx);
 	return (0);

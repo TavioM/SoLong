@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/21 19:29:46 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:12:59 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void	print(char **map);
 void	free_map(char **map);
 int		color(int alpha, int red, int green, int blue);
 void	set_window_size(char **map, int *x, int *y);
+int		handle_no_event(void *data);
+int		handle_keypress(int keysym, t_mlx *mlx);
+int		handle_keyrelease(int keysym, void *data);
 
 #endif
