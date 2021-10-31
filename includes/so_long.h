@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/22 14:12:59 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/10/31 18:53:41 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_img
 	int				len;
 	int				endian;
 }				t_img;
+
+typedef struct s_sprites
+{
+	struct s_img	brick;
+	struct s_img	diamond;
+	struct s_img	steve;
+}				t_sprites;
 
 char	**map_parsing(char *filepath);
 int		check_map(char **map);
