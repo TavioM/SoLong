@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 14:07:17 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/22 14:09:34 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:52:29 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 
 int	handle_keyrelease(int keysym, void *data)
 {
+	(void)keysym;
 	(void)data;
-	printf("Keyrelease: %d\n", keysym);
 	return (0);
 }

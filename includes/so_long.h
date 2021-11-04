@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/31 18:53:41 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/04 17:31:43 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_sprites
 {
 	struct s_img	brick;
 	struct s_img	diamond;
+	struct s_img	portal;
 	struct s_img	steve;
 }				t_sprites;
 
