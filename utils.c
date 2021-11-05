@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:22:37 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/10/22 19:10:50 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:57:11 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,28 @@ void	set_window_size(char **map, int *x, int *y)
 		(*y)++;
 	(*x) *= 16;
 	(*y) *= 16;
+}
+
+void	find_player(char **map, int *x, int *y)
+{
+	int i;
+	int j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] == 'P')
+			{
+				*x = i;
+				*y = j;
+				map[j][i] = '0';
+				return ;
+			}
+			i++;
+		}
+		j++;
+	}
 }
