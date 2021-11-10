@@ -6,13 +6,13 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/05 18:23:46 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/10 18:51:27 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_sprite(char **map, int x, int y, t_img *img, t_img sprite)
+void	draw_sprite(t_mlx *mlx, int x, int y, t_img sprite)
 {
 	int i;
 	int j;
