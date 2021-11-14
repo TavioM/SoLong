@@ -6,7 +6,7 @@
 #    By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 14:58:03 by ocmarout          #+#    #+#              #
-#    Updated: 2021/10/22 14:10:10 by ocmarout         ###   ########.fr        #
+#    Updated: 2021/11/12 20:30:27 by ocmarout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ SRCS		=	SoLong.c	\
 				parsing.c	\
 				check_map.c	\
 				utils.c		\
-				handle.c
+				handle.c	\
+				moves.c		\
+				collectibles.c
 
 NAME		=	so_long
 
@@ -55,5 +57,5 @@ fclean: clean
 re:		fclean ${OBJS_DIR} all
 
 norme:
-		norminette includes/
 		norminette ${SRCS}
+		norminette includes/
