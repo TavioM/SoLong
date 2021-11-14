@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:22:37 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/05 16:57:11 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/12 20:41:32 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	set_window_size(char **map, int *x, int *y)
 
 void	find_player(char **map, int *x, int *y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (map[j])
