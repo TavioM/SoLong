@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/10 18:51:52 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/12 21:46:10 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_mlx
 {
 	int					x;
 	int					y;
+	int					collectibles;
 	char				**map;
 	void				*mlx;
 	void				*win;
@@ -58,9 +59,11 @@ int		handle_keyrelease(int keysym, void *data);
 void	find_player(char **map, int *x, int *y);
 void	draw_sprite(t_mlx *mlx, int x, int y, t_img sprite);
 void	move_counter(void);
-int		move_up(t_mlx *mlx);
-int		move_down(t_mlx *mlx);
-int		move_left(t_mlx *mlx);
-int		move_right(t_mlx *mlx);
+void	move_up(t_mlx *mlx);
+void	move_down(t_mlx *mlx);
+void	move_left(t_mlx *mlx);
+void	move_right(t_mlx *mlx);
+void	count_collectibles(t_mlx *mlx);
+void	collectibles(t_mlx *mlx);
 
 #endif
