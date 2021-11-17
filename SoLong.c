@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/12 21:32:16 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:06:50 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_map(t_mlx *mlx)
 			else if (mlx->map[y][x] == 'C')
 				draw_sprite(mlx, x, y, mlx->diamond);
 			else if (mlx->map[y][x] == 'E')
-				draw_sprite(mlx, x, y, mlx->diamond);
+				draw_sprite(mlx, x, y, mlx->portal);
 			else if (mlx->map[y][x] == 'P')
 				draw_sprite(mlx, x, y, mlx->steve);
 			x++;
@@ -71,7 +71,7 @@ void	setup(t_mlx *mlx)
 			&(mlx->x), &(mlx->y));
 	mlx->diamond.addr = (unsigned int *)mlx_get_data_addr(mlx->diamond.img,
 			&(mlx->diamond.bpp), &(mlx->diamond.len), &(mlx->diamond.endian));
-	mlx->portal.img = mlx_xpm_file_to_image(mlx->mlx, "xpm/diamond(1).xpm",
+	mlx->portal.img = mlx_xpm_file_to_image(mlx->mlx, "xpm/portal.xpm",
 			&(mlx->x), &(mlx->y));
 	mlx->portal.addr = (unsigned int *)mlx_get_data_addr(mlx->portal.img,
 			&(mlx->portal.bpp), &(mlx->portal.len), &(mlx->portal.endian));
@@ -111,7 +111,7 @@ int	main(int argc, char **argv)
 	setup(&mlx);
 	mlx_loop_hook(mlx.mlx, &handle_no_event, &mlx);
 	mlx_hook(mlx.win, KeyPress, KeyPressMask, &handle_keypress, &mlx);
-	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
+//	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
 	draw_map(&mlx);
 	find_player(mlx.map, &(mlx.x), &(mlx.y));
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);

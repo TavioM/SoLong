@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 14:07:17 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/10 18:44:32 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:37:03 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,17 @@ int	handle_no_event(void *data)
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
 	if (keysym == XK_Escape)
+	{
+		free_map(mlx->map);
 		mlx_destroy_window(mlx->mlx, mlx->win);
+		mlx_destroy_image(mlx->mlx, mlx->img.img);
+		mlx_destroy_image(mlx->mlx, mlx->brick.img);
+		mlx_destroy_image(mlx->mlx, mlx->diamond.img);
+		mlx_destroy_image(mlx->mlx, mlx->portal.img);
+		mlx_destroy_image(mlx->mlx, mlx->steve.img);
+		mlx_destroy_image(mlx->mlx, mlx->black.img);
+		mlx_loop_end(mlx->mlx);
+	}
 	else if (keysym == 97)
 		move_left(mlx);
 	else if (keysym == 100)
