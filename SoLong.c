@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 15:46:22 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:31:20 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,23 @@ void	setup_mlx(t_mlx *mlx)
 	count_collectibles(mlx);
 }
 
-void	destroy_mlx(t_mlx *mlx)
+int	call_mlx(char *argv, t_mlx *mlx)
 {
-	free_map(mlx->map);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx_destroy_image(mlx->mlx, mlx->img.img);
-	mlx_destroy_image(mlx->mlx, mlx->brick.img);
-	mlx_destroy_image(mlx->mlx, mlx->diamond.img);
-	mlx_destroy_image(mlx->mlx, mlx->portal.img);
-	mlx_destroy_image(mlx->mlx, mlx->steve.img);
-	mlx_destroy_image(mlx->mlx, mlx->black.img);
+	mlx->map = map_parsing(argv);
+	if (!(mlx->map))
+		return (1);
+	set_window_size(mlx->map, &(mlx->x), &(mlx->y));
+	mlx->mlx = mlx_init();
+	if (!(mlx->mlx))
+		return (1);
+	mlx->win = mlx_new_window(mlx->mlx, mlx->x, mlx->y, argv);
+	if (!(mlx->win))
+	{
+		free(mlx->mlx);
+		return (1);
+	}
+	setup_mlx(mlx);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -107,20 +114,8 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nExpected 2 arguments, got %d\n", argc);
 		return (1);
 	}
-	mlx.map = map_parsing(argv[1]);
-	if (!(mlx.map))
-		return (-1);
-	set_window_size(mlx.map, &(mlx.x), &(mlx.y));
-	mlx.mlx = mlx_init();
-	if (!(mlx.mlx))
+	if (call_mlx(argv[1], &mlx) == 1)
 		return (1);
-	mlx.win = mlx_new_window(mlx.mlx, mlx.x, mlx.y, argv[1]);
-	if (!(mlx.win))
-	{
-		free(mlx.mlx);
-		return (1);
-	}
-	setup_mlx(&mlx);
 	mlx_loop_hook(mlx.mlx, &handle_no_event, &mlx);
 	mlx_hook(mlx.win, KeyPress, KeyPressMask, &handle_keypress, &mlx);
 	mlx_hook(mlx.win, 17, 1L << 2, &handle_exit, &mlx);

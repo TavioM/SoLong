@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 15:47:23 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:27:31 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	move_left(t_mlx *mlx);
 void	move_right(t_mlx *mlx);
 void	count_collectibles(t_mlx *mlx);
 void	collectibles(t_mlx *mlx);
+void	destroy_mlx(t_mlx *mlx);
 
 #endif

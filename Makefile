@@ -6,7 +6,7 @@
 #    By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 14:58:03 by ocmarout          #+#    #+#              #
-#    Updated: 2021/11/17 16:33:16 by ocmarout         ###   ########.fr        #
+#    Updated: 2021/11/17 17:28:07 by ocmarout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS		=	SoLong.c	\
 				parsing.c	\
 				check_map.c	\
 				utils.c		\
+				utils_2.c	\
 				handle.c	\
 				moves.c		\
 				collectibles.c
