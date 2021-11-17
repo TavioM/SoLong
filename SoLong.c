@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 17:31:20 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:05:38 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);
 	mlx_loop(mlx.mlx);
 	destroy_mlx(&mlx);
+	mlx_destroy_display(mlx.mlx);
 	free(mlx.mlx);
+	mlx.mlx = 0;
 	return (0);
 }
