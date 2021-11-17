@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:08:38 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/12 21:52:28 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:40:36 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,11 @@ char	**map_parsing(char *filepath)
 	{
 		map = add_line(map, tmp);
 		if (!map)
-		{
 			return (0);
-		}
 		j = get_next_line(fd, &tmp);
 	}
 	if (check_map(map))
 		return (0);
+	free(tmp);
 	return (map);
 }

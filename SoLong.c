@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/14 19:06:50 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:46:22 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_map(t_mlx *mlx)
 	}
 }
 
-void	setup(t_mlx *mlx)
+void	setup_mlx(t_mlx *mlx)
 {
 	mlx->img.img = mlx_new_image(mlx->mlx, mlx->x, mlx->y);
 	mlx->img.addr = (unsigned int *)mlx_get_data_addr(mlx->img.img,
@@ -86,6 +86,18 @@ void	setup(t_mlx *mlx)
 	count_collectibles(mlx);
 }
 
+void	destroy_mlx(t_mlx *mlx)
+{
+	free_map(mlx->map);
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_image(mlx->mlx, mlx->img.img);
+	mlx_destroy_image(mlx->mlx, mlx->brick.img);
+	mlx_destroy_image(mlx->mlx, mlx->diamond.img);
+	mlx_destroy_image(mlx->mlx, mlx->portal.img);
+	mlx_destroy_image(mlx->mlx, mlx->steve.img);
+	mlx_destroy_image(mlx->mlx, mlx->black.img);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx		mlx;
@@ -108,13 +120,15 @@ int	main(int argc, char **argv)
 		free(mlx.mlx);
 		return (1);
 	}
-	setup(&mlx);
+	setup_mlx(&mlx);
 	mlx_loop_hook(mlx.mlx, &handle_no_event, &mlx);
 	mlx_hook(mlx.win, KeyPress, KeyPressMask, &handle_keypress, &mlx);
-//	mlx_hook(mlx.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &mlx);
+	mlx_hook(mlx.win, 17, 1L << 2, &handle_exit, &mlx);
 	draw_map(&mlx);
 	find_player(mlx.map, &(mlx.x), &(mlx.y));
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);
 	mlx_loop(mlx.mlx);
+	destroy_mlx(&mlx);
+	free(mlx.mlx);
 	return (0);
 }

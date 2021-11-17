@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/12 21:46:10 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:47:23 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	set_window_size(char **map, int *x, int *y);
 int		handle_no_event(void *data);
 int		handle_keypress(int keysym, t_mlx *mlx);
 int		handle_keyrelease(int keysym, void *data);
+int		handle_exit(t_mlx *mlx);
 void	find_player(char **map, int *x, int *y);
 void	draw_sprite(t_mlx *mlx, int x, int y, t_img sprite);
 void	move_counter(void);

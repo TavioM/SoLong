@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 19:56:30 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/12 21:45:44 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:11:36 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	collectibles(t_mlx *mlx)
 	}
 	if (mlx->map[mlx->y][mlx->x] == 'E')
 		if (mlx->collectibles == 0)
-			mlx_destroy_window(mlx->mlx, mlx->win);
+			mlx_loop_end(mlx->mlx);
 }
