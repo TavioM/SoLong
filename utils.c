@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:22:37 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/12 20:41:32 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:25:20 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print(char **map)
 	}
 }
 
-void	free_map(char **map)
+char	**free_map(char **map)
 {
 	int	i;
 
@@ -33,6 +33,7 @@ void	free_map(char **map)
 	while (map[i])
 		free(map[i++]);
 	free(map);
+	return (0);
 }
 
 int	color(int alpha, int red, int green, int blue)
