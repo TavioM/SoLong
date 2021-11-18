@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:30:34 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 17:27:31 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:25:31 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_mlx
 char	**map_parsing(char *filepath);
 int		check_map(char **map);
 void	print(char **map);
-void	free_map(char **map);
+char	**free_map(char **map);
 int		color(int alpha, int red, int green, int blue);
 void	set_window_size(char **map, int *x, int *y);
 int		handle_no_event(void *data);

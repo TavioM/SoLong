@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 18:18:47 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 18:05:38 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:00:51 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,14 @@ int	call_mlx(char *argv, t_mlx *mlx)
 	set_window_size(mlx->map, &(mlx->x), &(mlx->y));
 	mlx->mlx = mlx_init();
 	if (!(mlx->mlx))
+	{
+		free_map(mlx->map);
 		return (1);
+	}
 	mlx->win = mlx_new_window(mlx->mlx, mlx->x, mlx->y, argv);
 	if (!(mlx->win))
 	{
+		free_map(mlx->map);
 		free(mlx->mlx);
 		return (1);
 	}

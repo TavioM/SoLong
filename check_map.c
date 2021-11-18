@@ -6,7 +6,7 @@
 /*   By: ocmarout <ocmarout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:12:16 by ocmarout          #+#    #+#             */
-/*   Updated: 2021/11/17 17:17:30 by ocmarout         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:13:50 by ocmarout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,9 @@ int	check_map(char **map)
 	}
 	if (check_walls(map))
 		ft_printf("Error\nMap is not surrounded by walls\n");
-	if (check_walls(map))
-		return (1);
 	if (check_special(map))
 		ft_printf("Error\nMap is missing one of Player, Collectible or Exit\n");
-	if (check_special(map))
+	if (check_walls(map) || check_special(map))
 		return (1);
 	return (0);
 }
